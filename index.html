@@ -49,32 +49,6 @@
       color: transparent;          /* text color while highlighted */
     }
     
-     .box {
-      width: 200px;
-      height: 200px;
-      border: 3px solid red; /* border color set here */
-    }
-    
-   .wrapper {
-      position: relative;
-      display: inline-block;
-    }
-
-    span {
-      width: 200px;
-      padding: 8px;
-      font-size: 16px;
-      position: relative;
-      background: transparent; /* so label can show through */
-    }
-
-    label {
-      position: absolute;
-      top: 8px;
-      left: 10px;
-      color: #aaa;
-      pointer-events: none;  /* allow typing through label */
-    }
 
   </style>
 </head>
@@ -82,58 +56,26 @@
   <div class="container">
     <!-- First element -->
     <div id="firstElement">
-      <h2>Hello 👋</h2>
+      <h2>Hello ðŸ‘‹</h2>
       <p>Your customer ID is 777. Click the button below to dial your code. Do not initiate a call yet until you return back to this website.</p>
+       <!-- Button -->
+    <a id="btnId" href="tel:777"><button onclick="toggleElements()">Dial Customer ID</button></a>
     </div>
 
     <!-- Second element (hidden by default) -->
     <div id="secondElement" class="hidden">
-      <h2> Success 🎉</h2>
-      <p>Tap red box and then click call to talk to our Customer Representative. We will use your Customer ID to identify you.</p>
+      <h2> Success ðŸŽ‰</h2>
+      <p>Talk to our Customer Representative. We will use your Customer ID to identify you.</p>
+      <a id="btnCall" href="tel:*%2306%23"><button>Call Now</button></a>
     </div>
-    
-    
-     
-     <div id="wrp" class="wrapper" hidden>
-     <span id="code" style="user-select:all;color:transparent;background-color:transparent;font-size:0px;" onclick="highlightTextInElement(this)">*#06#</span>
-     <label id="lb" style="color:red; background:yellow; font-size:0px;"> Tap to Call: 0712345678</label>
-    </div>
-
-
-    <!-- Button -->
-    <a id="btnId" href="tel:777"><button onclick="toggleElements()">Dial Customer ID</button></a>
   </div>
 
   <script>
     function toggleElements() {
       document.getElementById("firstElement").classList.add("hidden");
-      document.getElementById("btnId").classList.add("hidden");
-      document.getElementById("wrp").classList.add("box");
-      document.getElementById("code").style.fontSize = "50px";
-      document.getElementById("lb").style.fontSize = "20px";
       document.getElementById("secondElement").classList.remove("hidden");
-       setTimeout(highlightTextInElement("code"), 2000);
     }
     
-    
-      function highlightText(element) {
-      const range = document.createRange();
-      range.selectNodeContents(element);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges(); // clear previous selection
-      selection.addRange(range);   // highlight this element’s text
-    }
-    
-     const textEl = document.getElementById("code");
-
-    // Highlight on touch (mobile) or click (desktop)
-    textEl.addEventListener("touchstart", () => highlightText(textEl));
-    textEl.addEventListener("click", () => highlightText(textEl));
-       
-
-   // Run after 2000 milliseconds (2 seconds)
-   setTimeout(highlightTextInElement("code"), 2000);
   </script>
 </body>
 </html>
